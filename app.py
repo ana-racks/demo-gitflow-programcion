@@ -30,12 +30,32 @@ def listar_tareas():
 
 
 # ---------------------------------------------------------------------------
+# Parte 3 — feature/complete-tasks
+# ---------------------------------------------------------------------------
+
+def completar_tarea(numero_str):
+    """Marca como completada (y elimina) la tarea con el número indicado."""
+    try:
+        numero = int(numero_str)
+    except ValueError:
+        print("❌ Error: el número de tarea no es válido.")
+        return
+
+    if numero < 1 or numero > len(tareas):
+        print(f"❌ Error: no existe ninguna tarea con el número {numero}.")
+        return
+
+    tarea_completada = tareas.pop(numero - 1)
+    print(f"🎉 Tarea completada y eliminada: '{tarea_completada}'")
+
+
+# ---------------------------------------------------------------------------
 # Bucle principal — gestión de comandos
 # ---------------------------------------------------------------------------
 
 def main():
     print("=== TODO App ===")
-    print("Comandos disponibles: add <texto> | list | quit")
+    print("Comandos disponibles: add <texto> | list | done <número> | quit")
     print()
 
     while True:
@@ -65,6 +85,13 @@ def main():
         # --- Parte 2: list ---
         elif comando == "list":
             listar_tareas()
+
+        # --- Parte 3: done ---
+        elif comando == "done":
+            if len(partes) < 2 or not partes[1].strip():
+                print("⚠️  Uso correcto: done <número>")
+            else:
+                completar_tarea(partes[1].strip())
 
         else:
             print("⚠️  Comando no reconocido.")
