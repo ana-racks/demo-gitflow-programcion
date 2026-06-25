@@ -16,12 +16,26 @@ def agregar_tarea(texto):
 
 
 # ---------------------------------------------------------------------------
+# Parte 2 — feature/list-tasks
+# ---------------------------------------------------------------------------
+
+def listar_tareas():
+    """Muestra todas las tareas numeradas. Avisa si no hay ninguna."""
+    if not tareas:
+        print("📭 No hay tareas pendientes.")
+        return
+    print("📋 Tareas pendientes:")
+    for i, tarea in enumerate(tareas, start=1):
+        print(f"  {i}. {tarea}")
+
+
+# ---------------------------------------------------------------------------
 # Bucle principal — gestión de comandos
 # ---------------------------------------------------------------------------
 
 def main():
     print("=== TODO App ===")
-    print("Comandos disponibles: add <texto> | quit")
+    print("Comandos disponibles: add <texto> | list | quit")
     print()
 
     while True:
@@ -47,6 +61,10 @@ def main():
         elif comando == "quit":
             print("Hasta luego 👋")
             break
+
+        # --- Parte 2: list ---
+        elif comando == "list":
+            listar_tareas()
 
         else:
             print("⚠️  Comando no reconocido.")
