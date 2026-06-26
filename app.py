@@ -79,7 +79,7 @@ def main():
                 agregar_tarea(partes[1].strip())
 
         elif comando == "quit":
-            print("Hasta luego 👋")
+            print("Hasta la próxima.")
             break
 
         # --- Parte 2: list ---
